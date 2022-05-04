@@ -36,14 +36,27 @@ def openfile():
     text.insert(END, paragraph)
     text_file.close()
     
+def save():
+    input_name= input_box.get()
+    file= open(input_name + ".txt",'w')
+    data= text.get("1.0", END)
+    print(data)
+    file.write(data)
+    input_box.delete(0, END)
+    text.delete(1.0, END)
+    messagebox.showinfo("Update", "success")
+    
+def closewindow():
+    root.destroy()
+    
     
 open_btn= Button(root, image= open_img, text= "open file", command= openfile)
 open_btn.place(relx= 0.05, rely= 0.03, anchor= CENTER)
 
-save_btn= Button(root, image= save_img, text= "save file")
+save_btn= Button(root, image= save_img, text= "save file",command= save)
 save_btn.place(relx= 0.10, rely= 0.03, anchor= CENTER)
 
-exit_btn= Button(root, image= exit_img, text= "exit file")
+exit_btn= Button(root, image= exit_img, text= "exit file", command= closewindow)
 exit_btn.place(relx= 0.15, rely= 0.03, anchor= CENTER)
 
 root.mainloop()
